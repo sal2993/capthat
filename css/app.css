@@ -1,0 +1,41 @@
+/* Header CSS Begins */
+div.topbar {
+  font-size: 24px;
+  display: block;
+  font-weight: bold;
+  background-color: grey;
+  text-transform: uppercase;
+  /*box-shadow: 4px 4px 8px #aaaaaa;*/
+}
+a.zheader {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 8px;
+}
+a.zheader:link {
+  text-decoration: none;
+}
+a.zheader:visited {
+  text-decoration: none;
+}
+ul.topbar {
+  list-style-type: none;
+  margin-bottom: 0rem;
+  font-size: 20px;
+}
+li.topbar {
+  display: inline;
+}
+li.topbar_end {
+  float: right;
+}
+/* Header CSS Ends */
+
+/* Weekly Themed Pics */
+section.main {
+  background-size: cover;
+  display: block;
+  height: 500px;
+  width: 100%;
+}
