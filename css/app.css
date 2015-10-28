@@ -1,3 +1,8 @@
+/* Logo */
+div.logo_background {
+  display: block;
+  background-color: grey;
+}
 /* Header CSS Begins */
 div.topbar {
   font-size: 24px;
@@ -5,7 +10,6 @@ div.topbar {
   font-weight: bold;
   background-color: grey;
   text-transform: uppercase;
-  /*box-shadow: 4px 4px 8px #aaaaaa;*/
 }
 a.zheader {
   color: white;
