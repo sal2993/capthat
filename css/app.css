@@ -40,6 +40,33 @@ li.topbar_end {
 section.main {
   background-size: cover;
   display: block;
-  height: 500px;
+  min-height: 500px;
+  height: calc(100vh - 226px);
   width: 100%;
+}
+img.weekly_pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Weekly Theme post css */
+h1.t_title {
+  color: black;
+}
+h1.tpost_title {
+  color: orange;
+}
+p.tpost_title_date {
+  color: black;
+}
+h4.tpost_date {
+  color: orange;
+}
+p.tpost_body {
+  color: black;
+}
+
+p.red {
+  color: red;
 }

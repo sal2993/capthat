@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cap That | Welcome</title>
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <link rel="stylesheet" type="text/css" href="/css/app.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+
+  <!-- Begin Logo -->
+  <div class='logo_background'>
+    <div class="row">
+      <div class="large-4 colums">
+        <a href="/"><img src="/images/logo.jpg"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Begin top nav bar -->
+  <div class="topbar">
+    <ul class="topbar">
+      <li class="topbar"><a class="zheader" href="/">Home</a></li>
+      <li class="topbar"><a class="zheader" href="/archives.html">Archives</a></li>
+      <li class="topbar"><a class="zheader" href="/about.html">About</a></li>
+      <li class="topbar"><a class="zheader" href="/contact.html">Contact</a></li>
+      <li class="topbar_end"><a class="zheader" target="_blank" href="https://instagram.com/cap_that/">IG</a></li>
+    </ul>
+  </div>
+  <br>
+
+  <!-- Topic of the week -->
+  <div class="row">
+    <div class="large-10 colums">
+      <h1 class="t_title"><b>Tips on Setting up DigitalOcean Droplets</b></h1>
+      <p class="tpost_title_date">Week of: 01-4-16</p>
+    </div>
+  </div>
+
+
+  <!-- Tip 1 -->
+  <div class="row">
+    <div class="large-1 columns">
+      <h4 class="tpost_date" >Tip 1: </h4>
+    </div>
+    <div class="large-9 columns">
+      <h1 class="tpost_title">Create a user for your Droplet</h1>
+
+      <p class="tpost_body">Before you go on to create your awesome web app or 
+      any thing else your mind desires, you must first get rid of a bad habit 
+      of logging in as root user. When you spin up a new droplet, you start
+      as being root user. Being a root user can be convenient but it 
+      is widely accepted as a bad practise. This is because it is a security 
+      hazzard to constently use the root user. To circumvent this, we must
+      create a new user with sudo privliges.
+      </p>
+
+      <h3>Creating a user</h3>
+      <p>Since you most likely just started a new droplet, chances are that
+      you are most likely root user. To create a new user (as root) you type
+      the following to the command line:
+      </p>
+      <p class="red">adduser [insert user name you want here]
+      </p>
+      <p>You will then be asked the following:
+      </p>
+      <ul>
+        <li>To choose a password (choose a good one)</li>
+        <li>To Enter other user information (ie. name, phone, address). If you
+        don't need this information you can just hit the 'ENTER' key and leave
+        it blank</li>
+        <li>Then it will ask you to confirm this information so you can 'Y' to
+        continue</li>
+      </ul>
+      <p>You now have a new user!! Next we will give that user the proper sudo
+      privleges and keys so you will be able to log in to that user using ssh.
+      </p>
+      <p>If you want to try your new user account type, "su [username you chose]"
+      and it will prompt you for the password you chose. To go back to the root 
+      user (which we will need to proceed) just type, "exit" in the command line.
+      </p>
+      
+      <h3>Giving the user Sudo privleges</h3>
+      <p>Next you will need to give the new user sudo privileges so you can get
+      some real work done.</p>
+      <p>We do this by using visudo. While on root user, type this to the command line:</p>
+      <p class='red'>visudo</p>
+      <p> Then search for the line that reads, </p>
+      <pre># User privilege specification
+      root    ALL=(ALL:ALL) ALL
+      </pre>
+      <p>Copy this line and paste it right below (copy for me is
+      CTRL-SHIFT-C, and past is CTRL-SHIFT-V) or type it word for word.
+      On the new line you just pasted, change only the 'root' to your new user
+      you created which will look like this:
+      </p>
+      <pre>root    ALL=(ALL:ALL) ALL
+newuser    ALL=(ALL:ALL) ALL
+      </pre>
+      <p>Next you must save the file by hitting the keys [CTRL-X], followed by
+      typing 'Y', and hit [ENTER] to confirm.
+      </p>
+      <p>Now the new user will have administrative privileges. To use these
+      privileges you must type 'sudo' before typing administrative commands.
+      For example: 
+      </p>
+      <p class='red'>sudo [command you want]</p>
+      <p>To add new users, follow the same steps.</p>
+
+      <h3>Giving the new User SSH Keys</h3>
+      <p>In order to log in to your new user with SSH, you will have to give
+      the new user the proper public keys. To do that you will have to exit the
+      droplet back to your computer. Type this to the command line till you are
+      back in your local computers terminal:</p>
+      <p class='red'>exit</p>
+      <p>To give your new user the proper keys, type this to the command line:
+      </p>
+      
+      <p class="red">
+      ssh-copy-id [your username]@[your ip address]
+      </p>
+      <p>Example: 'ssh-copy-id cooluser@123.45.67.89'
+      </p>
+      <p>Now if it is your first time logging in. It will prompt you to type
+      'yes', so go ahead and do that. It may also ask you for your password,
+      so type the password you set up for this user.
+      <p>You should be able now to log in as this user through ssh. It may ask
+      you for your password but in the next tip we will change this so we can 
+      only log in with the keys (more secure).
+
+      <p class="tpost_body"></p>
+      <hr>
+    </div>
+    <div class="large-2 columns">
+      <p> </p>
+    </div>
+  </div>
+  <!-- /End Tip 1 -->
+
+
+  <!-- Tip 2 -->
+  <div class="row">
+    <div class="large-1 columns">
+      <h4 class="tpost_date" >Tip 2: </h4>
+    </div>
+    <div class="large-9 columns">
+      <h1 class="tpost_title">Change SSH config</h1>
+
+      <p class="tpost_body">The first thing that is suggested when you create a
+      new droplet is to change the ssh config page. In this post I will not be
+      teaching how to set up ssh keys, for that you should follow this page
+      <a href='https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets'
+      target="__blank">How to set up ssh keys</a>, but for those of
+      you who already have your keys set up and ready to go, Here is the two
+      things you should change to your ssh config file.
+      </p>
+
+      <h3>Disable Root Access and Enable Keys Access Only</h3>
+      <p>First you must edit the ssh config file by changing to the ssh 
+      directory so type the next time to the command prompt:</p>
+      <p class="red">cd /etc/ssh/</p>
+      <p> Then you must open up your favorite text editor (I use vim)</p>
+      <p class="red">sudo vim sshd_config</p>
+      <p>[[<strong>WARNING</strong>]] Before you do this step <b>MAKE SURE</b>
+      that you have already
+      completed tip one so you do not lock yourself out of your droplet.
+      </p>
+      <p> Next, find the line that shows "PermitRootLogin yes" and change it to
+      "PermitRootLogin no"
+      </p>
+      <p> Also find the line that says, "#PasswordAuthentication yes" notice it 
+      will be commented with a # therefore it will be a different color, then
+      change the line to, "PasswordAuthentication no". Notice I removed the #.
+      </p>
+      <p> after you will need to restart SSH. There are a few ways to do this.
+      One way is to type:
+      </p>
+      <p class="red">sudo reboot ssh</p>
+      <p>Another is to type:</p>
+      <p class="red">ps aux | grep ssh</p>
+      <p>This will bring up a list that looks like this,
+      </p>
+      <pre>"root    579  0.0  1.0  55164  5388 ?      Ss    2015   5:1   6 /usr/sbin/sshd -D"
+      </pre>
+      and a few other ones similar to it. Find the one that ends with 
+      "/usr/sbin/sshd -D" and get the PID which in my case is 579. 
+      Then type with YOUR PID:
+      </p>
+      <p class="red">sudo kill -HUP 579
+      </p>
+      <p> This will restart ssh and you are all set</p>
+
+      <p> Doing these tips will make sure that your droplet is more secure.
+      Taking away the root access and only allowing key access with reduce the 
+      brute force attempts at breaking into your droplet.
+      </p>
+
+      <p class="tpost_body"></p>
+      <hr>
+    </div>
+    <div class="large-2 columns">
+      <p> </p>
+    </div>
+  </div>
+
+
+
+  <!-- Day 1 -->
+  <div class="row">
+    <div class="large-12 columns">
+      <img class="weeks" src="/images/themeimgs/11-9-15-t2.jpg">
+    </div>
+  </div>
+
+
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
